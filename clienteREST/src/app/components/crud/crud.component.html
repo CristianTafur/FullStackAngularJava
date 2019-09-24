@@ -1,0 +1,56 @@
+<br><br>
+<div class="row">  
+   <div class="col-12">
+        <div class="container">
+           <table class="table">
+               <thead class="thead-dark" align="center">
+                   <tr>
+                       <th>
+                          numero
+                       </th> 
+                       <th>
+                            documento
+                        </th> 
+                        <th>
+                            nombre
+                        </th>
+                        <th colspan="2">
+                            configuraciones
+                        </th>
+                   </tr> 
+               </thead>
+               <tbody  align="center">
+                   <tr>
+                       <td>{{num}}</td>
+                       <td><input id={{documento}}{{num}} class="form-control" type="number" placeholder={{documento}} required></td>
+                       <td><input id={{nombre}}{{num}} class="form-control" type="text" placeholder={{nombre}} required></td>
+                       <td colspan="2"><button class="btn btn-outline-success m-2 btn-block" (click)="setUser(num)">guardar</button></td>
+                   </tr>
+                  <tr *ngFor="let value of user.users; let i=index">
+                      <td>
+                         {{i}}
+                      </td>
+                  
+                        <td>
+                          <p *ngIf="!value.estado" > {{value.documento}}</p>
+                            <input *ngIf="value.estado" id={{documento}}{{i}} class="form-control" type="number" disabled value={{value.documento}} required>
+                        </td>
+                  
+                            <td>
+                              <p *ngIf="!value.estado"> {{value.nombre}}</p>
+                               <input *ngIf="value.estado" id={{nombre}}{{i}} class="form-control" type="text" value={{value.nombre}} required>
+                            </td>
+                            <td>
+                                <button *ngIf="!value.estado" class="btn btn-outline-primary m-2 btn-block" (click)="editar(i)">editar</button>
+                                <button *ngIf="value.estado" class="btn btn-outline-success m-2 btn-block" (click)="putUser(i)">guardar</button>
+                            </td>
+                            <td>
+                                <button *ngIf="!value.estado" class="btn btn-outline-danger m-2 btn-block" (click)="deleteUser(i)">eliminar</button>
+                                <button *ngIf="value.estado" class="btn btn-outline-danger m-2 btn-block" (click)="editar(i)">cancelar</button>
+                            </td>
+                 </tr>
+               </tbody>
+           </table>
+        </div>
+   </div>
+</div>
